@@ -8,7 +8,7 @@ finetuning_type: full
 deepspeed: configs/ds_z2_config.json
 
 ### dataset
-dataset: instruction_bb_v1_0, instruction_bb_v1_1
+dataset: lm_searcher_trajectory_228k_0, lm_searcher_trajectory_228k_1
 template: llama3
 cutoff_len: 20480
 overwrite_cache: true
