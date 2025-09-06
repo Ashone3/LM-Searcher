@@ -1,0 +1,1 @@
+vllm serve path-to-the-checkpoint --dtype auto --api-key token-abc123 --chat-template template.jinja

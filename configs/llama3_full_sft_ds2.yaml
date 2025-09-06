@@ -1,0 +1,45 @@
+### model
+model_name_or_path: meta-llama/llama3.1-8b
+
+### method
+stage: sft
+do_train: true
+finetuning_type: full
+deepspeed: configs/ds_z2_config.json
+
+### dataset
+dataset: instruction_bb_v1_0, instruction_bb_v1_1
+template: llama3
+cutoff_len: 20480
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: tuned_llama_model/llama3-8b/full/sft_bb_v1_llama3.1_228000samples_1epoch
+logging_steps: 10
+save_steps: 1000
+save_total_limit: 1
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 2
+learning_rate: 1.0e-5
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+save_only_model: true
+# resume_from_checkpoint: true
+
+### eval
+val_size: 0.1
+per_device_eval_batch_size: 1
+eval_strategy: "no"
+eval_steps: 500
+
+### visualize
+report_to: wandb
+run_name: sft_bb_v1_scale_data5_normal_test # optional
